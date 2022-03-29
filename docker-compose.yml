@@ -1,0 +1,14 @@
+version: '3'
+services:
+  postgresql:
+    container_name: socialmedia
+    image: 'postgres:latest'
+    ports:
+      - '5433:5432'
+    environment:
+      - POSTGRES_DB=socialmedia
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    restart: unless-stopped
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d/
