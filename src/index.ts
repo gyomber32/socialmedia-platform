@@ -1,19 +1,20 @@
+import 'dotenv/config';
 import { Server } from 'http';
 import app from './app';
 import { debug } from 'console';
 import { pool } from './pool';
 
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 let server: Server;
 
 pool
   .connect()
   .then(() => {
-    server = app.listen(port, () => {
+    server = app.listen(PORT, () => {
       // eslint-disable-next-line no-console
       console.log('Successfully connected to the database.');
       // eslint-disable-next-line no-console
-      console.log(`Socialmedia backend is running on port ${port}.`);
+      console.log(`Socialmedia backend is running on port ${PORT}.`);
     });
   })
   .catch((error) => {
